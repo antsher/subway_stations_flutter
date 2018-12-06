@@ -5,13 +5,11 @@ class Station {
 
   Station({this.name, this.latitude, this.longitude});
 
-  factory Station.fromJson(Map<String, dynamic> json) {
-    return Station(
-      name: json['name'],
-      latitude: json['latitude'].toDouble(),
-      longitude: json['longitude'].toDouble(),
-    );
-  }
+  factory Station.fromJson(Map<String, dynamic> json) => Station(
+        name: json['name'],
+        latitude: json['latitude'].toDouble(),
+        longitude: json['longitude'].toDouble(),
+      );
 }
 
 class StationList {
@@ -19,9 +17,6 @@ class StationList {
 
   StationList({this.stations});
 
-  factory StationList.fromJson(List<dynamic> parsedJson) {
-    List<Station> stations =
-        parsedJson.map((i) => Station.fromJson(i)).toList();
-    return StationList(stations: stations);
-  }
+  factory StationList.fromJson(List<dynamic> parsedJson) => StationList(
+      stations: parsedJson.map((i) => Station.fromJson(i)).toList());
 }
