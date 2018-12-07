@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:subway_stations/model/entities.dart';
 import 'package:subway_stations/model/repository.dart' as model;
 import 'package:subway_stations/view/styles.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,29 +40,45 @@ class StationListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView.builder(
         itemCount: stations.length,
-        itemBuilder: (context, index) => Column(
+        itemBuilder: (context, index) => Row(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    stations[index].name,
-                    style: TextStyles.BIG,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Text(
+                        stations[index].name,
+                        style: TextStyles.BIG,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(12, 4, 0, 4),
+                      child: Text(
+                        stations[index].latitude.toString(),
+                        style: TextStyles.NORMAL_ITALIC,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(12, 4, 0, 8),
+                      child: Text(
+                        stations[index].longitude.toString(),
+                        style: TextStyles.NORMAL_ITALIC,
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(12, 4, 0, 4),
-                  child: Text(
-                    stations[index].latitude.toString(),
-                    style: TextStyles.NORMAL_ITALIC,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(12, 4, 0, 8),
-                  child: Text(
-                    stations[index].longitude.toString(),
-                    style: TextStyles.NORMAL_ITALIC,
+                Container(
+                  width: 104,
+                  height: 64,
+                  padding: EdgeInsets.all(12),
+                  alignment: Alignment.centerRight,
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: stations[index].imageUrl,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ],

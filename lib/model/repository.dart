@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:subway_stations/model/entities.dart';
 
 Future<StationList> fetchStations() async {
-  final response = await http
-      .get('https://my-json-server.typicode.com/BeeWhy/metro/stations');
+  final response = await http.get('https://my-json-server.typicode.com/'
+      'antsher/subway_stations_api/stations');
   if (response.statusCode == 200) {
     return StationList.fromJson(json.decode(response.body));
   } else {

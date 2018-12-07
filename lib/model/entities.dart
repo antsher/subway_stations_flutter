@@ -1,15 +1,18 @@
 class Station {
+  final int id;
   final String name;
   final double latitude;
   final double longitude;
+  final String imageUrl;
 
-  Station({this.name, this.latitude, this.longitude});
+  Station({this.id, this.name, this.latitude, this.longitude, this.imageUrl});
 
   factory Station.fromJson(Map<String, dynamic> json) => Station(
-        name: json['name'],
-        latitude: json['latitude'].toDouble(),
-        longitude: json['longitude'].toDouble(),
-      );
+      id: json['id'],
+      name: json['name'],
+      latitude: json['latitude'].toDouble(),
+      longitude: json['longitude'].toDouble(),
+      imageUrl: json['imageUrl']);
 }
 
 class StationList {
