@@ -5,14 +5,14 @@ class Station {
   final double longitude;
   final String imageUrl;
 
-  Station({this.id, this.name, this.latitude, this.longitude, this.imageUrl});
+  Station(this.id, this.name, this.latitude, this.longitude, this.imageUrl);
 
   factory Station.fromJson(Map<String, dynamic> json) => Station(
-      id: json['id'],
-      name: json['name'],
-      latitude: json['latitude'].toDouble(),
-      longitude: json['longitude'].toDouble(),
-      imageUrl: json['imageUrl']);
+      json['id'],
+      json['name'],
+      json['latitude'].toDouble(),
+      json['longitude'].toDouble(),
+      json['imageUrl']);
 }
 
 class StationList {

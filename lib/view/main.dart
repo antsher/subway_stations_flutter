@@ -38,50 +38,54 @@ class StationListWidget extends StatelessWidget {
   StationListWidget({@required this.stations}) : super();
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
+  build(BuildContext context) => ListView.builder(
         itemCount: stations.length,
-        itemBuilder: (context, index) => Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        itemBuilder: (context, index) => _buildRow(index),
+      );
+
+  _buildRow(int index) => Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(4),
-                      child: Text(
-                        stations[index].name,
-                        style: TextStyles.BIG,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(12, 4, 0, 4),
-                      child: Text(
-                        stations[index].latitude.toString(),
-                        style: TextStyles.NORMAL_ITALIC,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(12, 4, 0, 8),
-                      child: Text(
-                        stations[index].longitude.toString(),
-                        style: TextStyles.NORMAL_ITALIC,
-                      ),
-                    ),
-                  ],
+                Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Text(
+                    stations[index].name,
+                    style: TextStyles.BIG,
+                  ),
                 ),
-                Container(
-                  width: 104,
-                  height: 64,
-                  padding: EdgeInsets.all(12),
-                  alignment: Alignment.centerRight,
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: stations[index].imageUrl,
-                    fit: BoxFit.contain,
+                Padding(
+                  padding: EdgeInsets.fromLTRB(12, 4, 0, 4),
+                  child: Text(
+                    stations[index].latitude.toString(),
+                    style: TextStyles.NORMAL_ITALIC,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(12, 4, 0, 8),
+                  child: Text(
+                    stations[index].longitude.toString(),
+                    style: TextStyles.NORMAL_ITALIC,
                   ),
                 ),
               ],
             ),
+          ),
+          Container(
+            width: 164,
+            height: 94,
+            padding: EdgeInsets.all(12),
+            alignment: Alignment.centerRight,
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: stations[index].imageUrl,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ],
       );
 }
