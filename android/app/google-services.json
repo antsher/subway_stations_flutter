@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "95718107004",
+    "firebase_url": "https://subwaystationsflutter.firebaseio.com",
+    "project_id": "subwaystationsflutter",
+    "storage_bucket": "subwaystationsflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95718107004:android:f7da8ae92e794d84",
+        "android_client_info": {
+          "package_name": "com.stazis.subwaystations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95718107004-ubpd59ehc29ije3s7vlk16k7qpj5aeqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDISP54PP_UF4rt2wDtGD0pNrmWXnYyhuQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
