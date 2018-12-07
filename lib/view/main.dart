@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('List Mode'),
           ),
-          body: FutureBuilder<StationList>(
+          body: FutureBuilder<List<Station>>(
             future: model.fetchStations(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return StationListWidget(stations: snapshot.data.stations);
+                return StationListWidget(stations: snapshot.data);
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
