@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:subway_stations/model/entities.dart';
 import 'package:subway_stations/model/repository.dart' as model;
 import 'package:subway_stations/view/styles.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('List Mode'),
           ),
-          body: FutureBuilder<List<Station>>(
-            future: model.fetchStations(),
+          body: StreamBuilder(
+            stream: model.fetchStations(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return StationListWidget(stations: snapshot.data);
@@ -33,17 +33,18 @@ class MyApp extends StatelessWidget {
 }
 
 class StationListWidget extends StatelessWidget {
-  final List<Station> stations;
+  final QuerySnapshot stations;
 
   StationListWidget({@required this.stations}) : super();
 
   @override
   build(BuildContext context) => ListView.builder(
-        itemCount: stations.length,
-        itemBuilder: (context, index) => _buildRow(index),
+        itemCount: stations.documents.length,
+        itemBuilder: (context, index) =>
+            _buildListItem(context, stations.documents[index]),
       );
 
-  _buildRow(int index) => Row(
+  _buildListItem(BuildContext context, DocumentSnapshot document) => Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -54,21 +55,21 @@ class StationListWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(4),
                   child: Text(
-                    stations[index].name,
+                    document['name'],
                     style: TextStyles.BIG,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(12, 4, 0, 4),
                   child: Text(
-                    stations[index].latitude.toString(),
+                    document['latitude'].toString(),
                     style: TextStyles.NORMAL_ITALIC,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(12, 4, 0, 8),
                   child: Text(
-                    stations[index].longitude.toString(),
+                    document['longitude'].toString(),
                     style: TextStyles.NORMAL_ITALIC,
                   ),
                 ),
@@ -82,7 +83,7 @@ class StationListWidget extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: stations[index].imageUrl,
+              image: document['imageUrl'],
               fit: BoxFit.contain,
             ),
           ),
