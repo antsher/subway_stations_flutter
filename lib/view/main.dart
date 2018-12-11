@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:subway_stations/model/repository.dart' as model;
 import 'package:subway_stations/view/styles.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 void main() => runApp(MyApp());
 
@@ -81,8 +80,8 @@ class StationListWidget extends StatelessWidget {
             height: 94,
             padding: EdgeInsets.all(12),
             alignment: Alignment.centerRight,
-            child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
+            child: FadeInImage.assetNetwork(
+              placeholder: 'images/loading.gif',
               image: document['imageUrl'],
               fit: BoxFit.contain,
             ),
