@@ -27,13 +27,11 @@ class StationListWidget extends StatelessWidget {
   StationListWidget({@required this.stationsAndPosition});
 
   @override
-  build(BuildContext context) {
-    return ListView.builder(
-      itemCount: stationsAndPosition.item1.documents.length,
-      itemBuilder: (context, index) =>
-          _buildListItem(context, stationsAndPosition.item1.documents[index]),
-    );
-  }
+  build(BuildContext context) => ListView.builder(
+        itemCount: stationsAndPosition.item1.documents.length,
+        itemBuilder: (context, index) =>
+            _buildListItem(context, stationsAndPosition.item1.documents[index]),
+      );
 
   _buildListItem(BuildContext context, DocumentSnapshot document) {
     final distance = haversine.distance(

@@ -26,7 +26,14 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file("$projectDir/debug.keystore")
+            storePassword 'android'
+        }
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -36,18 +43,22 @@ android {
         disable 'InvalidPackage'
     }
 
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.stazis.subwaystations"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
 
     buildTypes {
         release {
+            signingConfig signingConfigs.debug
+        }
+        debug {
             signingConfig signingConfigs.debug
         }
     }
@@ -58,10 +69,11 @@ flutter {
 }
 
 dependencies {
+    implementation 'androidx.multidex:multidex:2.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
 }
 
 apply plugin: 'com.google.gms.google-services'
