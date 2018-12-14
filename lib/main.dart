@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 import 'package:subway_stations/home/home.dart';
 import 'package:subway_stations/list/stationlist.dart';
+import 'package:subway_stations/map/stationmap.dart';
 
 void main() => runApp(SubwayStationsApp());
 
@@ -19,11 +20,7 @@ class ContentWidget extends StatefulWidget {
 }
 
 class _ContentWidgetState extends State<ContentWidget> {
-  final List<Widget> _children = [
-    Home(),
-    PlaceholderWidget(Colors.deepOrange),
-    StationList()
-  ];
+  final List<Widget> _children = [Home(), StationMap(), StationList()];
   int _currentIndex = 0;
 
   @override

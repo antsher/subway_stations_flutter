@@ -27,60 +27,69 @@ class StationListWidget extends StatelessWidget {
   StationListWidget({@required this.stationsAndPosition});
 
   @override
-  build(BuildContext context) => ListView.builder(
-        itemCount: stationsAndPosition.item1.documents.length,
-        itemBuilder: (context, index) =>
-            _buildListItem(context, stationsAndPosition.item1.documents[index]),
-      );
+  build(BuildContext context) => ListView(children: _createItems());
 
-  _buildListItem(BuildContext context, DocumentSnapshot document) {
+  List<Widget> _createItems() {
+    List<Tuple2<Widget, double>> stationsWithDistances = stationsAndPosition
+        .item1.documents
+        .map((station) => _createItem(station))
+        .toList();
+    stationsWithDistances.sort((a, b) => a.item2.compareTo(b.item2));
+    return stationsWithDistances
+        .map((stationsWithDistance) => stationsWithDistance.item1)
+        .toList();
+  }
+
+  Tuple2<Widget, double> _createItem(DocumentSnapshot document) {
     final distance = haversine.distance(
         document['latitude'],
         document['longitude'],
         stationsAndPosition.item2.latitude,
         stationsAndPosition.item2.longitude);
-    return Card(
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 3,
-            child: Column(
-              children: [
-                Text(
-                  document['name'],
-                  style: TextStyles.BIG,
+    return Tuple2<Widget, double>(
+        Card(
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    Text(
+                      document['name'],
+                      style: TextStyles.BIG,
+                    ),
+                    Text(
+                      'Distance from your location: ${distance.round()}m',
+                      style: TextStyles.NORMAL,
+                    ),
+                    Text(
+                      'Latitude: ${document['latitude']}',
+                      style: TextStyles.NORMAL_ITALIC,
+                    ),
+                    Text(
+                      'Longitude: ${document['longitude']}',
+                      style: TextStyles.NORMAL_ITALIC,
+                    ),
+                  ],
                 ),
-                Text(
-                  'Distance from your location: ${distance.round()}m',
-                  style: TextStyles.NORMAL,
-                ),
-                Text(
-                  'Latitude: ${document['latitude']}',
-                  style: TextStyles.NORMAL_ITALIC,
-                ),
-                Text(
-                  'Longitude: ${document['longitude']}',
-                  style: TextStyles.NORMAL_ITALIC,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(12),
-              alignment: Alignment.centerRight,
-              child: FadeInImage.assetNetwork(
-                placeholder: 'images/loading.gif',
-                image: document['imageUrl'],
-                fit: BoxFit.contain,
               ),
-            ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  alignment: Alignment.centerRight,
+                  child: FadeInImage.assetNetwork(
+                    placeholder: 'images/loading.gif',
+                    image: document['imageUrl'],
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+        distance);
   }
 }
