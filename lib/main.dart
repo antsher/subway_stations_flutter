@@ -8,10 +8,8 @@ void main() => runApp(SubwayStationsApp());
 
 class SubwayStationsApp extends StatelessWidget {
   @override
-  build(BuildContext context) => MaterialApp(
-        title: 'Subway Stations',
-        home: ContentWidget(),
-      );
+  build(BuildContext context) =>
+      MaterialApp(title: 'Subway Stations', home: ContentWidget());
 }
 
 class ContentWidget extends StatefulWidget {
@@ -50,7 +48,7 @@ class _ContentWidgetState extends State<ContentWidget> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('List Mode'),
+          title: Text('Subway stations'),
         ),
         body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
