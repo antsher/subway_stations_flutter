@@ -86,13 +86,15 @@ class StationListWidget extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    padding: EdgeInsets.all(12),
+                  child: Align(
                     alignment: Alignment.centerRight,
-                    child: FadeInImage.assetNetwork(
-                      placeholder: 'images/loading.gif',
-                      image: document['imageUrl'],
-                      fit: BoxFit.contain,
+                    child: Padding(
+                      padding: EdgeInsets.all(6),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: 'images/loading.gif',
+                        image: document['imageUrl'],
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ),
