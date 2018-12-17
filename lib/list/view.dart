@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:subway_stations/model/repository.dart' as model;
-import 'package:subway_stations/station_detailed.dart';
+import 'package:subway_stations/common/base_stations_model.dart' as model;
+import 'package:subway_stations/detailed/view.dart';
 import 'package:subway_stations/util/haversine.dart' as haversine;
 import 'package:subway_stations/util/styles.dart';
 import 'package:tuple/tuple.dart';

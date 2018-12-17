@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_permissions/simple_permissions.dart';
-import 'package:subway_stations/home/home.dart';
-import 'package:subway_stations/list/stationlist.dart';
-import 'package:subway_stations/map/stationmap.dart';
+import 'package:subway_stations/home/view.dart';
+import 'package:subway_stations/list/view.dart';
+import 'package:subway_stations/map/view.dart';
 
 void main() => runApp(SubwayStationsApp());
 

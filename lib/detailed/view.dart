@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:subway_stations/model/repository.dart' as model;
+import 'package:subway_stations/detailed/model.dart' as model;
 
 class DetailedStation extends StatelessWidget {
   final DocumentSnapshot document;
