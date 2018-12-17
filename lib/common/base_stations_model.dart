@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:tuple/tuple.dart';
 import 'package:subway_stations/util/streams.dart' as streams;
+import 'package:tuple/tuple.dart';
 
 const String BASE_INFO_COLLECTION = 'base_info';
 
