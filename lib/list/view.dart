@@ -93,7 +93,8 @@ class StationListWidget extends StatelessWidget {
                       child: FadeInImage.assetNetwork(
                         placeholder: 'images/loading.gif',
                         image: document['imageUrl'],
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
                       ),
                     ),
                   ),

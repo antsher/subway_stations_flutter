@@ -78,10 +78,13 @@ class DetailedStationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInImage.assetNetwork(
-      placeholder: 'images/placeholder_800x600.jpg',
-      image: detailedStation['imageUrl'],
-      fit: BoxFit.contain,
+    return Opacity(
+      opacity: 0.5,
+      child: FadeInImage.assetNetwork(
+        placeholder: 'images/placeholder_800x600.jpg',
+        image: detailedStation['imageUrl'],
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
