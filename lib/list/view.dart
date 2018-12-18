@@ -60,11 +60,11 @@ class StationListWidget extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: <Widget>[
                 Expanded(
                   flex: 3,
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Text(
                         document['name'],
                         style: TextStyles.BIG,
