@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:subway_stations/home/entities.dart';
 import 'package:subway_stations/home/model.dart' as model;
 
 class Home extends StatefulWidget {
@@ -11,26 +10,25 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final _textFocus = FocusNode();
-    final _nameController = TextEditingController();
-    final _textController = TextEditingController();
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
     return Padding(
       padding: EdgeInsets.fromLTRB(30, 50, 30, 0),
       child: ListView(
         children: <Widget>[
           TextField(
-              controller: _nameController,
+              controller: _emailController,
               decoration: InputDecoration(
                 filled: true,
-                labelText: 'Name',
+                labelText: 'Email',
               ),
               onSubmitted: (String value) {
                 FocusScope.of(context).requestFocus(_textFocus);
               }),
           TextField(
-            controller: _textController,
+            controller: _passwordController,
             focusNode: _textFocus,
-            keyboardType: TextInputType.multiline,
-            maxLines: 10,
+            obscureText: true,
             decoration: InputDecoration(
               filled: true,
               labelText: 'Text',
@@ -38,15 +36,23 @@ class HomeState extends State<Home> {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: RaisedButton(
-                child: Text('SEND'),
-                onPressed: () {
-                  model.sendMessage(
-                      Message(_nameController.text, _textController.text));
-                },
-              ),
+            child: ButtonBar(
+              children: <Widget>[
+                RaisedButton(
+                  child: Text('SIGN UP'),
+                  onPressed: () {
+                    model.signUpWithEmailAndPassword(
+                        _emailController.text, _passwordController.text);
+                  },
+                ),
+                RaisedButton(
+                  child: Text('SIGN IN'),
+                  onPressed: () {
+                    model.signInWithEmailAndPassword(
+                        _emailController.text, _passwordController.text);
+                  },
+                ),
+              ],
             ),
           )
         ],
