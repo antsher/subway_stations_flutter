@@ -19,7 +19,6 @@ class HomeState extends State<Home> {
         children: <Widget>[
           TextField(
               controller: _nameController,
-              autofocus: true,
               decoration: InputDecoration(
                 filled: true,
                 labelText: 'Name',

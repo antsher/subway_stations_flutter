@@ -53,7 +53,8 @@ class StationListWidget extends StatelessWidget {
           onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailedStation(document, distance),
+                  builder: (context) =>
+                      DetailedStation(document, distance.round()),
                 ),
               ),
           child: Card(
@@ -67,19 +68,19 @@ class StationListWidget extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         document['name'],
-                        style: TextStyles.BIG,
+                        style: TextStyles.BIG_BOLD,
                       ),
                       Text(
                         'Distance from your location: ${distance.round()}m',
-                        style: TextStyles.NORMAL,
+                        style: TextStyles.MEDIUM_NORMAL,
                       ),
                       Text(
                         'Latitude: ${document['latitude']}',
-                        style: TextStyles.NORMAL_ITALIC,
+                        style: TextStyles.MEDIUM_NORMAL_ITALIC,
                       ),
                       Text(
                         'Longitude: ${document['longitude']}',
-                        style: TextStyles.NORMAL_ITALIC,
+                        style: TextStyles.MEDIUM_NORMAL_ITALIC,
                       ),
                     ],
                   ),
